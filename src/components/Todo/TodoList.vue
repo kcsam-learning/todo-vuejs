@@ -47,16 +47,40 @@ export default {
     }
   },
 }
+
 </script>
 <style lang="scss">
-body {
-  ul {
-    li {
-      .done {
-        text-decoration: line-through;
-      }
+$border: 2px solid
+	rgba(
+		$color: white,
+		$alpha: 0.35,
+	);
+$size1: 6px;
+$size2: 12px;
+$size3: 18px;
+$size4: 24px;
+$size5: 48px;
+
+ul {
+  padding: 10px;
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: $border;
+    padding: $size2 $size4;
+    border-radius: $size1;
+    margin-bottom: $size2;
+    span {
+      cursor: pointer;
+    }
+    .done {
+      text-decoration: line-through;
+    }
+    button {
+      font-size: $size2;
+      padding: $size1;
     }
   }
 }
-
 </style>

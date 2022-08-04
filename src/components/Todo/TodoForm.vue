@@ -43,3 +43,43 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+$border: 2px solid
+	rgba(
+		$color: white,
+		$alpha: 0.35,
+	);
+$size1: 6px;
+$size2: 12px;
+$size3: 18px;
+$size4: 24px;
+$size5: 48px;
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  label {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  input,
+  button {
+    height: $size5;
+    box-shadow: none;
+    outline: none;
+    padding-left: $size2;
+    padding-right: $size2;
+    border-radius: $size1;
+    font-size: 18px;
+    margin-top: $size1;
+    margin-bottom: $size2;
+  }
+  input {
+    background-color: transparent;
+    border: $border;
+    color: inherit;
+  }
+}
+</style>
