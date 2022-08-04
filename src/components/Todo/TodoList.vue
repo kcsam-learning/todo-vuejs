@@ -23,26 +23,26 @@ export default {
       default() {
         return []
       }
-    }
+    },
+    saveData: Function
   },
   setup(props) {
     const { todos } = toRefs(props)
 
     function removeTodo(idx) {
+      const { saveData } = props
+
       todos.value.splice(idx, 1)
-      saveData()
+      saveData(todos.value)
     }
     function doneTodo(todo) {
+      const { saveData } = props
+
       todo.done = !todo.done
-      saveData()
-    }
-    function saveData() {
-      const storageData = JSON.stringify(todos.value)
-      localStorage.setItem('todo', storageData)
+      saveData(todos.value)
     }
     return {
       removeTodo,
-      saveData,
       doneTodo
     }
   },

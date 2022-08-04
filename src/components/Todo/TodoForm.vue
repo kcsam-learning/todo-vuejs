@@ -1,5 +1,4 @@
 <template>
-  <h1>Todo App</h1>
   <form @submit.prevent="addTodo()">
     <label>Todo Form</label>
     <input
@@ -9,25 +8,24 @@
     />
     <button>Add Todo</button>
   </form>
-  <TodoList :todos="todos"/>
 </template>
 
 <script>
-import { ref } from 'vue'
-import TodoList from './TodoList.vue'
+import { ref, toRefs } from 'vue'
 
 export default {
   name: 'TodoForm',
-  components: {
-    TodoList
+  props: {
+    todos: Array,
+    saveData: Function
   },
-  setup() {
+  setup(props) {
     const newTodo = ref('')
-    const defaultData = []
-    const todosData = JSON.parse(localStorage.getItem('todo')) || defaultData
-    const todos = ref(todosData)
+    const { todos } = toRefs(props)
 
     function addTodo() {
+      const { saveData } = props
+
       if (newTodo.value) {
         todos.value.push({
           done: false,
@@ -35,17 +33,12 @@ export default {
         })
         newTodo.value = ''
       }
-      saveData()
-    }
-    function saveData() {
-      const storageData = JSON.stringify(todos.value)
-      localStorage.setItem('todo', storageData)
+
+      saveData(todos.value)
     }
     return {
       addTodo,
       newTodo,
-      saveData,
-      todos
     }
   }
 }
